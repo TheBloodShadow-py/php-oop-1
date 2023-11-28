@@ -19,6 +19,7 @@ ul {
   gap: 30px;
   list-style: none;
   filter: drop-shadow(0 1px 0.3rem rgb(0, 0, 0));
+  flex-wrap: wrap;
 }
 
 img {

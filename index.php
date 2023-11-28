@@ -1,77 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>php-oop-1</title>
     <link rel="stylesheet" href="main.css">
 </head>
+
 <body>
 
-<?php 
+    <?php
 
-class Production {
-    public $title;
+    class Production
+    {
+        public $title;
 
-    public $langage;
+        public $langage;
 
-    public $rating;
+        public $rating;
 
-    public function __construct ($_title, $_langage, $_rating) {
-        if (is_null($_title) || is_null($_langage) || is_null($_rating)) { 
-            var_dump("Error bad parametres ");
+        public $imageUrl;
+
+        public function __construct($_title, $_language, $_rating)
+        {
+            if (is_null($_title) || is_null($_language) || is_null($_rating)) {
+                var_dump("Error bad parametres ");
+            } else {
+                $this->title = $_title;
+                $this->langage = $_language;
+                $this->rating = $_rating;
+                $this->imageUrl = 'https://picsum.photos/250/300?t=' . microtime();
+            }
         }
-        else {
-            $this->title = $_title;
-            $this->langage = $_langage;
-            $this->rating = $_rating;
+
+        public function getTitle()
+        {
+            return $this->title;
+        }
+        public function getLanguage()
+        {
+            return $this->langage;
+        }
+        public function getRating()
+        {
+            return $this->rating;
+        }
+
+        public function getImageUrl()
+        {
+            return $this->imageUrl;
         }
     }
 
-    public function getTitle () {
-        return $this->title;
+
+    $productions = [];
+
+    for ($i = 0; $i < 4; $i++) {
+        $productions[] = new Production("Film" . $i + 1, 'IT', random_int(0, 10));
     }
-    public function getLanguage () {
-        return $this->langage;
-    }
-    public function getRating () {
-        return $this->rating;
-    }
-} 
 
-$film = new Production("Film 1", "IT", "8");
-$film2 = new Production("Film 2", "US", "5");
-$film3 = new Production("Film 3", "FR", "9");
+    ?>
 
-
-?>
-
-<section>
-    <ul>
-        <li>
-            <img src="https://picsum.photos/250/300" alt="">
-            <div class="text-section" >
-                <h1><?php echo $film->getTitle(); ?></h1>
-                <span><?php echo $film->getLanguage()." - ".$film->getRating()." / 10" ?></span>
-            </div>
-        </li>
-        <li>
-            <img src="https://picsum.photos/251/300" alt="">
-            <div class="text-section" >
-                <h1><?php echo $film2->getTitle(); ?></h1>
-                <span><?php echo $film2->getLanguage()." - ".$film2->getRating()." / 10" ?></span>
-            </div>
-        </li>
-        <li>
-            <img src="https://picsum.photos/249/300" alt="">
-            <div class="text-section" >
-                <h1><?php echo $film3->getTitle(); ?></h1>
-                <span><?php echo $film3->getLanguage()." - ".$film3->getRating()." / 10" ?></span>
-            </div>
-        </li>
-    </ul>
-</section>
+    <section>
+        <ul>
+            <?php foreach ($productions as $film) : ?>
+                <li>
+                    <img src="<?= $film->getImageUrl() ?>" alt="">
+                    <div class="text-section">
+                        <h1><?php echo $film->getTitle(); ?></h1>
+                        <span><?php echo $film->getLanguage() . " - " . $film->getRating() . " / 10" ?></span>
+                    </div>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </section>
 
 
 </body>
+
 </html>
