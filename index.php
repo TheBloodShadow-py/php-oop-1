@@ -1,7 +1,7 @@
 <?php
 
-require_once __DIR__ . "./modules/Movie.php";
-require_once __DIR__ . "./modules/Serie.php";
+require_once __DIR__ . "./models/Movie.php";
+require_once __DIR__ . "./models/Serie.php";
 
 $movies = [];
 $series = [];
