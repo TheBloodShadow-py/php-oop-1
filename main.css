@@ -2,11 +2,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  overflow: auto;
 }
 
 body {
-  overflow: hidden;
-  height: 100svh;
+  min-height: 100svh;
   width: 100%;
   display: flex;
   align-items: center;
@@ -15,11 +15,13 @@ body {
 }
 
 ul {
-  display: flex;
-  gap: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 40px;
+  grid-row-gap: 40px;
   list-style: none;
-  filter: drop-shadow(0 1px 0.3rem rgb(0, 0, 0));
-  flex-wrap: wrap;
+  filter: drop-shadow(0 1px 0.2rem rgb(0, 0, 0));
+  padding: 50px;
 }
 
 img {

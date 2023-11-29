@@ -1,3 +1,21 @@
+<?php
+
+require_once __DIR__ . "./modules/Production.php";
+require_once __DIR__ . "./modules/Movie.php";
+require_once __DIR__ . "./modules/Serie.php";
+
+$movies = [];
+$series = [];
+
+for ($i = 0; $i < 5; $i++) {
+    $movies[] = new Movie("Film " . $i + 1, 'IT', random_int(0, 10), random_int(10000, 100000) / 10, random_int(60, 120));
+    $series[] = new Serie("Serie " . $i + 1, 'IT', random_int(0, 10), random_int(1, 4));
+}
+
+$productions = array_merge($movies, $series);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,66 +28,21 @@
 
 <body>
 
-    <?php
-
-    class Production
-    {
-        public $title;
-
-        public $langage;
-
-        public $rating;
-
-        public $imageUrl;
-
-        public function __construct($_title, $_language, $_rating)
-        {
-            if (is_null($_title) || is_null($_language) || is_null($_rating)) {
-                var_dump("Error bad parametres ");
-            } else {
-                $this->title = $_title;
-                $this->langage = $_language;
-                $this->rating = $_rating;
-                $this->imageUrl = 'https://picsum.photos/250/300?t=' . microtime();
-            }
-        }
-
-        public function getTitle()
-        {
-            return $this->title;
-        }
-        public function getLanguage()
-        {
-            return $this->langage;
-        }
-        public function getRating()
-        {
-            return $this->rating;
-        }
-
-        public function getImageUrl()
-        {
-            return $this->imageUrl;
-        }
-    }
-
-
-    $productions = [];
-
-    for ($i = 0; $i < 4; $i++) {
-        $productions[] = new Production("Film" . $i + 1, 'IT', random_int(0, 10));
-    }
-
-    ?>
-
     <section>
         <ul>
-            <?php foreach ($productions as $film) : ?>
+            <?php foreach ($productions as $production) : ?>
                 <li>
-                    <img src="<?= $film->getImageUrl() ?>" alt="">
+                    <img src="<?= $production->getImageUrl() ?>" alt="">
                     <div class="text-section">
-                        <h1><?php echo $film->getTitle(); ?></h1>
-                        <span><?php echo $film->getLanguage() . " - " . $film->getRating() . " / 10" ?></span>
+                        <h1><?php echo $production->getTitle(); ?></h1>
+                        <span><?php echo $production->getLanguage() . " - " . $production->getRating() . " / 10" ?></span>
+                        <?php if ($production instanceof Movie) { ?>
+                            <span><?= $production->getProfit() ?></span>
+                            <span><?= $production->getDuration() ?></span>
+                        <?php } else { ?>
+                            <span><?= "Numero stagioni: " . $production->getSeason() ?></span>
+                        <?php } ?>
+
                     </div>
                 </li>
             <?php endforeach; ?>
