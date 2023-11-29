@@ -33,20 +33,12 @@ $productions = array_merge($movies, $series);
                 <li>
                     <img draggable="false" src="<?= $production->getImageUrl() ?>" alt="">
                     <div class="text-section">
-                        <h1><?= $production->getTitle(); ?></h1>
-                        <span><?= $production->getLanguage() . " - " . $production->getRating() . " / 10" ?></span>
-                        <?php if ($production instanceof Movie) { ?>
-                            <span><?= $production->getProfit() ?></span>
-                            <span><?= $production->getDuration() ?></span>
-                        <?php } else { ?>
-                            <span><?= "Numero stagioni: " . $production->getSeason() ?></span>
-                        <?php } ?>
+                        <?= $production->getDetails() ?>
                     </div>
                 </li>
             <?php endforeach; ?>
         </ul>
     </section>
-
 
 </body>
 

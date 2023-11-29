@@ -22,4 +22,8 @@ class Serie extends Production
     {
         $this->season = $season;
     }
+    public function getDetails()
+    {
+        return parent::getDetails() . "<span> Numero stagioni: " . $this->getSeason() . "</span>";
+    }
 }

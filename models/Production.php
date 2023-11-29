@@ -9,7 +9,7 @@ class Production
 
     private $imageUrl;
 
-    public function __construct(String $_title, String $_language, Int $_rating)
+    protected function __construct(String $_title, String $_language, Int $_rating)
     {
         if (is_null($_title) || is_null($_language) || is_null($_rating)) {
             var_dump("Error bad parametres ");
@@ -37,5 +37,10 @@ class Production
     public function getImageUrl()
     {
         return $this->imageUrl;
+    }
+
+    protected function getDetails()
+    {
+        return "<h1> " . $this->getTitle() . "</h1> <span>" . $this->getTitle() . " - " . $this->getRating() . " / 10</span> ";
     }
 }

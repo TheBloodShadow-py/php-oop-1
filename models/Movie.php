@@ -35,4 +35,9 @@ class Movie extends Production
     {
         $this->profit = $profit;
     }
+
+    public function getDetails()
+    {
+        return parent::getDetails() . "<span>" . $this->getProfit() . "</span> <span>" . $this->getDuration() . "</span>";
+    }
 }
